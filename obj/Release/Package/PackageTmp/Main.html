@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+</head>
+<body data-ng-app="MainModule">
+    <div id="tblSubs" ng-controller="MainController">
+        <p>Select cinema from list.</p>
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <select ng-model="selectedMovie" ng-change='getCinemaData(selectedMovie)'>
+                            <option value="">-- Select Cinema --</option>
+                            <option ng-repeat="cinemas in cinemasAnchorList" value="{{cinemas.value}}">{{cinemas.name}}</option>
+                        </select>
+
+                    </div>
+                </td>
+                <td>
+                    <select ng-model="selectedDate">
+                        <option value="">-- Select Date --</option>
+                        <option ng-repeat="date in dateList" value="{{date.text}}">{{date.text}}</option>
+                    </select>
+
+                </td>
+            </tr>
+        </table>
+        <div id="venue-selector">
+            <ul>
+                <li ng-repeat="movie in movieTimingList">
+                    <div class="cinema-name">
+                        <span>{{movie.name}}</span>
+                    </div>
+                    <div class="show-times">
+                        <ul>
+                            <li>
+                                <input class="{{movie.classType}}" type="radio" name="time" ng-value="movie.value" ng-click="getMovieData(movie)"/>
+                                <label>{{ movie.value }}</label>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <input type="text" ng-model="mobileNumber" placeholder="Enter mobile number" />
+            <input type="button" ng-click="saveUserData()" value="Submit" />
+        </div>
+    </div>
+</body>
+<link href="main.css" rel="stylesheet" />
+<script src="Scripts/jquery-3.1.1.min.js"></script>
+<script src="Scripts/angular.min.js"></script>
+<script src="Scripts/MainScripts/MainModule.js"></script>
+<script src="Scripts/MainScripts/MainService.js"></script>
+<script src="Scripts/MainScripts/MainController.js"></script>
+<script src="Scripts/angular-sanitize.js"></script>
